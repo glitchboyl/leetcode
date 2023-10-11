@@ -29,10 +29,7 @@ impl Solution {
     pub fn max_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
         if let Some(node) = root {
             let nb = node.borrow();
-            return i32::max(
-                Self::max_depth(nb.left.clone()),
-                Self::max_depth(nb.right.clone()),
-            ) + 1;
+            return Self::max_depth(nb.left.clone()).max(Self::max_depth(nb.right.clone())) + 1;
         }
         return 0;
     }
