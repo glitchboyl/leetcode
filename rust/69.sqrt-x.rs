@@ -10,12 +10,7 @@ impl Solution {
         match x {
             0 | 1 => return x,
             _ => {
-                // consraint x <= 2^31 - 1
-                let sqrt_limit = 46340;
-                let (mut left, mut right) = (1, x / 2);
-                if right > sqrt_limit {
-                    right = sqrt_limit;
-                }
+                let (mut left, mut right) = (1, i32::min(x / 2, 46340));
                 while left <= right {
                     let mid = (left + right) / 2;
                     let sqrt = mid * mid;
