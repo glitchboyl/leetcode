@@ -23,7 +23,7 @@ impl Solution {
                 right = mid - 1;
             }
         }
-        return left * left == num || right * right == num;
+        return left * left == num;
     }
 }
 // @lc code=end
