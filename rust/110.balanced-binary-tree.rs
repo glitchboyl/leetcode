@@ -33,8 +33,8 @@ impl Solution {
                 let nb = node.borrow();
                 let left_balance = get_balance(max_balance, nb.left.clone());
                 let right_balance = get_balance(max_balance, nb.right.clone());
-                *max_balance = i32::max(*max_balance, (left_balance - right_balance).abs());
-                return i32::max(left_balance, right_balance) + 1;
+                *max_balance = *max_balance.max(&mut (left_balance - right_balance).abs());
+                return left_balance.max(right_balance) + 1;
             }
             return -1;
         }
