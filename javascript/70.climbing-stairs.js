@@ -11,14 +11,20 @@
  * @return {number}
  */
 var climbStairs = function (n) {
-  const ways = [0, 1, 2, 3];
+  // Solution 1: memo
+  // const ways = [0, 1, 2, 3];
+  // function climb(n) {
+  //   if (typeof ways[n] !== "undefined") return ways[n];
+  //   ways[n] = climb(n - 1) + climb(n - 2);
+  //   return ways[n];
+  // }
+  // return climb(n);
 
-  function climb(n) {
-    if (typeof ways[n] !== "undefined") return ways[n];
-    ways[n] = climb(n - 1) + climb(n - 2);
-    return ways[n];
+  // Solution 2: dp
+  const dp = [1, 2];
+  for (let i = 2; i < n; i++) {
+    dp.push(dp[i - 2] + dp[i - 1]);
   }
-
-  return climb(n);
+  return dp[n - 1];
 };
 // @lc code=end
