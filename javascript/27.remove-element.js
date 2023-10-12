@@ -24,9 +24,7 @@ var removeElement = function (nums, val) {
     fast = 0;
   while (fast < nums.length) {
     if (nums[fast] !== val) {
-      let temp = nums[slow];
       nums[slow++] = nums[fast];
-      nums[fast] = temp;
     }
     fast++;
   }
