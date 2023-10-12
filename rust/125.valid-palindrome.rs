@@ -7,10 +7,26 @@
 // @lc code=start
 impl Solution {
     pub fn is_palindrome(s: String) -> bool {
-        let lowercase_str = s.to_lowercase();
-        let palindrome = lowercase_str.chars().filter(|x| x.is_ascii_alphanumeric());
+        let mut s = s
+            .chars()
+            .filter(|c| c.is_ascii_alphanumeric())
+            .map(|c| c.to_ascii_lowercase());
 
-        return palindrome.clone().rev().eq(palindrome);
+        // Solution 1:
+        return s.clone().rev().eq(s);
+
+        // Solution 2: two pointers
+        // loop {
+        //     match (s.next(), s.next_back()) {
+        //         (Some(a), Some(b)) => {
+        //             if a != b {
+        //                 return false;
+        //             }
+        //         }
+        //         _ => break,
+        //     }
+        // }
+        // return true;
     }
 }
 // @lc code=end
