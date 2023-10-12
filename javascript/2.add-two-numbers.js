@@ -19,8 +19,8 @@
  */
 var addTwoNumbers = function (l1, l2) {
   let carry = 0;
-  const result = new ListNode();
-  let p = result;
+  const dummy = new ListNode();
+  let p = dummy;
   while (l1 != null || l2 != null || carry != 0) {
     let val = carry;
     if (l1) {
@@ -35,6 +35,6 @@ var addTwoNumbers = function (l1, l2) {
     p.next = new ListNode(val % 10);
     p = p.next;
   }
-  return result.next;
+  return dummy.next;
 };
 // @lc code=end
