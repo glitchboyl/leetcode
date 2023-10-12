@@ -51,8 +51,8 @@ impl Solution {
         // Solution 2:
         let (mut l1, mut l2) = (l1.clone(), l2.clone());
         let mut carry = 0;
-        let mut result = Box::new(ListNode::new(0));
-        let mut p = &mut result;
+        let mut dummy = Box::new(ListNode::new(0));
+        let mut p = &mut dummy;
         while l1.is_some() || l2.is_some() || carry > 0 {
             let (mut v1, mut v2) = (0, 0);
             if let Some(node) = l1 {
@@ -68,7 +68,7 @@ impl Solution {
             p.next = Some(Box::new(ListNode::new(val % 10)));
             p = p.next.as_mut().unwrap();
         }
-        return result.next;
+        return dummy.next;
     }
 }
 // @lc code=end
