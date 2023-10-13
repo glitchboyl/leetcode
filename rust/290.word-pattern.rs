@@ -8,13 +8,13 @@
 impl Solution {
     pub fn word_pattern(pattern: String, s: String) -> bool {
         use std::collections::HashMap;
+        let strs: Vec<&str> = s.split_whitespace().collect();
+        if (strs.len() != pattern.len()) {
+            return false;
+        }
         let mut p_map: HashMap<char, &str> = HashMap::new();
         let mut s_map: HashMap<String, char> = HashMap::new();
         let mut i = 0;
-        let strs: Vec<&str> = s.split_whitespace().collect();
-        if (strs.len() != pattern.chars().count()) {
-            return false;
-        }
         for p in pattern.chars() {
             match (p_map.get(&p), s_map.get(strs[i])) {
                 (Some(s), Some(c)) => {
