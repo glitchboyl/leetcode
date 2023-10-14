@@ -7,25 +7,31 @@
 // @lc code=start
 impl Solution {
     pub fn longest_palindrome(s: String) -> String {
-        let mut lp = String::new();
-        fn find_palindrome(s: &str, mut l: usize, mut r: usize) -> String {
-            while l >= 0 && r < s.len() && s.bytes().nth(l) == s.bytes().nth(r) {
+        let (mut start, mut end): (usize, usize) = (0, 1);
+        let bytes = s.as_bytes();
+        fn find_palindrome(
+            bytes: &[u8],
+            mut l: i32,
+            mut r: i32,
+            start: &mut usize,
+            end: &mut usize,
+        ) {
+            let len = bytes.len() as i32;
+            while l >= 0 && r < len && bytes[l as usize] == bytes[r as usize] {
                 l -= 1;
                 r += 1;
             }
-            return s[l+1..r].to_string();
-        }
-        for i in 0..s.len() {
-            let p1 = find_palindrome(&s, i, i);
-            let p2 = find_palindrome(&s, i, i + 1);
-            if p1.len() > lp.len() {
-                lp = p1;
-            }
-            if p2.len() > lp.len() {
-                lp = p2;
+            if r - l - 1 > (*end - *start) as i32 {
+                *end = r as usize;
+                *start = (l + 1) as usize;
             }
         }
-        return lp;
+        for i in 1..s.len() {
+            let i = i as i32;
+            find_palindrome(bytes, i, i, &mut start, &mut end);
+            find_palindrome(bytes, i - 1, i, &mut start, &mut end);
+        }
+        return s[start..end].to_string();
     }
 }
 // @lc code=end
