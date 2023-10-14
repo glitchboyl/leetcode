@@ -16,7 +16,7 @@ impl Solution {
             let mut i = row as usize;
             let mut d = true;
             while i < s.len() {
-                zigzag.push(bytes[i].into());
+                zigzag.push(bytes[i] as char);
                 let mut n = 0;
                 if row == 0 || row == num_rows - 1 {
                     n = num_rows - 1;
