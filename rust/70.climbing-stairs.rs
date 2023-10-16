@@ -23,11 +23,20 @@ impl Solution {
         // return climb(n, &mut memo);
 
         // Solution 2:
-        let mut dp = vec![1, 2];
-        for i in 2..(n as usize) {
-            dp.push(dp[i - 2] + dp[i - 1]);
+        // let mut dp = vec![1, 2];
+        // for i in 2..(n as usize) {
+        //     dp.push(dp[i - 2] + dp[i - 1]);
+        // }
+        // return dp[n as usize - 1];
+
+        // Solution 3:
+        let (mut p, mut q) = (0, 1);
+        for i in 1..(n as usize) {
+            let t = q;
+            q = p + q;
+            p = t;
         }
-        return dp[n as usize - 1];
+        return p + q;
     }
 }
 // @lc code=end
