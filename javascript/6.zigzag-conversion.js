@@ -19,10 +19,10 @@ var convert = function (s, numRows) {
     let rev = false;
     while (i < s.length) {
       zigzag.push(s[i]);
-      if (row === 0 || row === numRows - 1) i += 2 * (numRows - 1);
-      else {
-        i += 2 * (rev ? row : numRows - row - 1);
-      }
+      let n = 0;
+      if (row === 0 || row === numRows - 1) n = numRows - 1;
+      else n = rev ? row : numRows - row - 1;
+      i += 2 * n;
       rev = !rev;
     }
   }
