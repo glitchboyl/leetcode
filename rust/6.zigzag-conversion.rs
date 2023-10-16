@@ -14,19 +14,19 @@ impl Solution {
         let bytes = s.as_bytes();
         for row in 0..num_rows {
             let mut i = row as usize;
-            let mut d = true;
+            let mut rev = false;
             while i < s.len() {
                 zigzag.push(bytes[i] as char);
                 let mut n = 0;
                 if row == 0 || row == num_rows - 1 {
                     n = num_rows - 1;
-                } else if d {
-                    n = num_rows - row - 1;
-                } else {
+                } else if rev {
                     n = row;
+                } else {
+                    n = num_rows - row - 1;
                 }
-                i += (2 * n).max(1) as usize;
-                d = !d;
+                i += (2 * n) as usize;
+                rev = !rev;
             }
         }
         return zigzag;
