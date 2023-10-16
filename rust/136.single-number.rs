@@ -7,6 +7,7 @@
 // @lc code=start
 impl Solution {
     pub fn single_number(nums: Vec<i32>) -> i32 {
+        // Solution 1:
         // let mut sorted_nums = nums.clone();
         // sorted_nums.sort();
         // let mut i: usize = 0;
@@ -19,7 +20,7 @@ impl Solution {
         // }
         // return sorted_nums[i];
 
-        // using XOR
+        // Solution 2: using XOR
         return nums.iter().fold(0, |acc, x| acc ^ x);
     }
 }
