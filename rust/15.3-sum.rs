@@ -9,12 +9,13 @@ impl Solution {
     pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut ordered_nums = nums;
         ordered_nums.sort();
+        let len = ordered_nums.len();
         let mut result = Vec::new();
-        for i in 0..ordered_nums.len() - 2 {
+        for i in 0..len - 2 {
             if i > 0 && ordered_nums[i] == ordered_nums[i - 1] {
                 continue;
             }
-            let (mut j, mut k) = (i + 1, ordered_nums.len() - 1);
+            let (mut j, mut k) = (i + 1, len - 1);
             while j < k {
                 let sum = ordered_nums[i] + ordered_nums[j] + ordered_nums[k];
                 if sum == 0 {
