@@ -21,10 +21,10 @@ impl Solution {
                 if sum == 0 {
                     result.push(vec![ordered_nums[i], ordered_nums[j], ordered_nums[k]]);
                     j += 1;
+                    k -= 1;
                     while ordered_nums[j] == ordered_nums[j - 1] && j < k {
                         j += 1;
                     }
-                    k -= 1;
                 } else if sum < 0 {
                     j += 1;
                 } else {
