@@ -12,6 +12,9 @@ impl Solution {
         let mut d = i32::MAX;
         let len = ordered_nums.len();
         for i in 0..len - 2 {
+            if i > 0 && ordered_nums[i] == ordered_nums[i - 1] {
+                continue;
+            }
             let (mut j, mut k) = (i + 1, len - 1);
             while j < k {
                 let _d = target - ordered_nums[i] - ordered_nums[j] - ordered_nums[k];
