@@ -7,7 +7,7 @@
 // @lc code=start
 impl Solution {
     pub fn four_sum(nums: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
-        let mut result = vec![];
+        let mut quadruplets = vec![];
         if nums.len() >= 4 {
             let mut ordered_nums = nums;
             ordered_nums.sort();
@@ -30,7 +30,7 @@ impl Solution {
                     while c < d {
                         let sum = ordered_nums[c] + ordered_nums[d];
                         if sum == sub_b {
-                            result.push(vec![
+                            quadruplets.push(vec![
                                 ordered_nums[a],
                                 ordered_nums[b],
                                 ordered_nums[c],
@@ -43,6 +43,9 @@ impl Solution {
                             }
                         } else if sum < sub_b {
                             c += 1;
+                            while ordered_nums[c] == ordered_nums[c - 1] && c < d {
+                                c += 1;
+                            }
                         } else {
                             d -= 1;
                         }
@@ -50,7 +53,7 @@ impl Solution {
                 }
             }
         }
-        return result;
+        return quadruplets;
     }
 }
 // @lc code=end
