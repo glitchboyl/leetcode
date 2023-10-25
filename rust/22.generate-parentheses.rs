@@ -15,7 +15,7 @@ impl Solution {
             parenthesis: String,
             parentheses: &mut Vec<String>,
         ) {
-            if l == r && r == n {
+            if l == n && r == n {
                 parentheses.push(parenthesis);
                 return;
             }
