@@ -10,7 +10,7 @@
  * @return {string}
  */
 var toHex = function (num) {
-  // Solution 1: using built in method
+  // Solution 1: using built-in method
   // return num.toString(16);
 
   // Solution 2:
