@@ -7,32 +7,34 @@
 // @lc code=start
 impl Solution {
     pub fn search(nums: Vec<i32>, target: i32) -> i32 {
-        let (mut l, mut r) = (0, nums.len() - 1);
-        while l <= r {
-            if nums[l] > target && nums[r] < target {
-                break;
+        let (mut left, mut right) = (0, nums.len() - 1);
+        if nums[left] > target && nums[right] < target {
+            return -1;
+        }
+        while left <= right {
+            let (l, r) = (nums[left], nums[right]);
+            if l == target {
+                return left as i32;
             }
-            if nums[l] == target {
-                return l as i32;
+            if r == target {
+                return right as i32;
             }
-            if nums[r] == target {
-                return r as i32;
+            let mid = (left + right) / 2;
+            let m = nums[mid];
+            if m == target {
+                return mid as i32;
             }
-            let m = (l + r) / 2;
-            if nums[m] == target {
-                return m as i32;
-            }
-            if nums[m] >= nums[l] {
-                if nums[l] < target && nums[m] > target {
-                    r = m - 1;
+            if m >= l {
+                if l < target && m > target {
+                    right = mid - 1;
                 } else {
-                    l = m + 1;
+                    left = mid + 1;
                 }
             } else {
-                if nums[r] > target && nums[m] < target {
-                    l = m + 1;
+                if r > target && m < target {
+                    left = mid + 1;
                 } else {
-                    r = m - 1;
+                    right = mid - 1;
                 }
             }
         }
