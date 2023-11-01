@@ -27,42 +27,38 @@ use std::cell::RefCell;
 use std::rc::Rc;
 impl Solution {
     pub fn min_depth(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
-        if let Some(node) = root {
-            // Solution 1: BFS
-            let mut d = 0;
-            let mut nodes = vec![vec![node]];
-            while let Some(level) = nodes.pop() {
-                d += 1;
-                let mut children_nodes = vec![];
-                for n in level {
-                    let nb = n.borrow();
-                    match (nb.left.clone(), nb.right.clone()) {
-                        (None, None) => return d,
-                        (Some(cn), None) | (None, Some(cn)) => {
-                            children_nodes.push(cn);
-                        }
-                        (Some(ln), Some(rn)) => {
-                            children_nodes.push(ln);
-                            children_nodes.push(rn);
-                        }
-                    }
-                }
-                if children_nodes.len() > 0 {
-                    nodes.push(children_nodes)
-                }
+        // Solution 1: BFS
+        use std::collections::VecDeque;
+        let mut nodes = VecDeque::from([(1, root)]);
+        while let Some((depth, Some(n))) = nodes.pop_front() {
+            let mut nb = n.borrow_mut();
+            if nb.left.is_none() && nb.right.is_none() {
+                return depth;
             }
-
-            // Solution 2: DFS
-            // let nb = node.borrow();
-            // return 1 + match (nb.left.clone(), nb.right.clone()) {
-            //     (None, None) => 0,
-            //     (Some(cn), None) | (None, Some(cn)) => Self::min_depth(Some(cn)),
-            //     (Some(ln), Some(rn)) => {
-            //         i32::min(Self::min_depth(Some(ln)), Self::min_depth(Some(rn)))
-            //     }
-            // };
+            if nb.left.is_some() {
+                nodes.push_back((depth + 1, nb.left.take()));
+            }
+            if nb.right.is_some() {
+                nodes.push_back((depth + 1, nb.right.take()));
+            }
         }
-        return 0;
+        0
+
+        // Solution 2: DFS
+        // fn dfs(node: &Option<Rc<RefCell<TreeNode>>>) -> i32 {
+        //     if let Some(n) = node {
+        //         let nb = n.borrow();
+        //         1 + match (&nb.left, &nb.right) {
+        //             (None, None) => 0,
+        //             (Some(_), None) => dfs(&nb.left),
+        //             (None, Some(_)) => dfs(&nb.right),
+        //             (Some(_), Some(_)) => dfs(&nb.left).min(dfs(&nb.right)),
+        //         }
+        //     } else {
+        //         0
+        //     }
+        // }
+        // dfs(&root)
     }
 }
 // @lc code=end
