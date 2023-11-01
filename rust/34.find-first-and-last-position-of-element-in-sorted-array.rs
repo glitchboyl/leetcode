@@ -10,8 +10,8 @@ impl Solution {
         if nums.len() == 0 {
             return vec![-1, -1];
         }
-        fn binary_search(nums: &Vec<i32>, target: i32, find_first: bool) -> i32 {
-            let (mut left, mut right) = (0, nums.len() as i32 - 1);
+        fn find_position(nums: &Vec<i32>, target: i32, find_first: bool, left: i32) -> i32 {
+            let (mut left, mut right) = (left, nums.len() as i32 - 1);
             let mut position = -1;
             while left <= right {
                 let mid = left + (right - left) / 2;
@@ -30,9 +30,14 @@ impl Solution {
             }
             position
         }
+        let left = find_position(&nums, target, true, 0);
         vec![
-            binary_search(&nums, target, true),
-            binary_search(&nums, target, false),
+            left,
+            if left == -1 {
+                -1
+            } else {
+                find_position(&nums, target, false, left)
+            },
         ]
     }
 }
