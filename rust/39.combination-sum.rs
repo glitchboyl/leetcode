@@ -11,28 +11,30 @@ impl Solution {
         fn backtrack(
             candidates: &Vec<i32>,
             target: i32,
-            combination: Vec<i32>,
+            s: usize,
+            combination: &mut Vec<i32>,
             combinations: &mut Vec<Vec<i32>>,
         ) {
-            for i in 0..candidates.len() {
+            for i in s..candidates.len() {
                 if candidates[i] > target {
                     continue;
                 }
-                let mut combination = combination.clone();
                 combination.push(candidates[i]);
                 if candidates[i] == target {
-                    combinations.push(combination);
-                } else if candidates[i] < target {
+                    combinations.push(combination.clone());
+                } else {
                     backtrack(
-                        &candidates[i..].to_vec(),
+                        candidates,
                         target - candidates[i],
+                        i,
                         combination,
                         combinations,
                     );
                 }
+                combination.pop();
             }
         }
-        backtrack(&candidates, target, vec![], &mut combinations);
+        backtrack(&candidates, target, 0, &mut vec![], &mut combinations);
         combinations
     }
 }
