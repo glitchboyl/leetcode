@@ -12,7 +12,7 @@ impl Solution {
         let d = s.len() as i32 % k;
         for (i, c) in s.chars().enumerate() {
             let i = i as i32;
-            if i != 0 && (i == d || (i - d) % k == 0) {
+            if i > 0 && i % k == d {
                 key.push('-');
             }
             key.push(c.to_ascii_uppercase());
