@@ -11,8 +11,8 @@ impl Solution {
             .iter()
             .fold((0, 0), |acc, t| {
                 (
-                    acc.0 + duration + if *t >= acc.1 { 0 } else { - acc.1 + *t },
-                    *t + duration
+                    acc.0 + duration - if acc.1 > *t { acc.1 - *t } else { 0 },
+                    *t + duration,
                 )
             })
             .0
