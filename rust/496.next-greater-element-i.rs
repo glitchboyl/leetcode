@@ -8,22 +8,17 @@
 impl Solution {
     pub fn next_greater_element(nums1: Vec<i32>, nums2: Vec<i32>) -> Vec<i32> {
         use std::collections::HashMap;
-        let mut greater_map = HashMap::from([(nums2.last().unwrap(), -1)]);
+        let mut greater = HashMap::from([(nums2.last().unwrap(), -1)]);
         for i in (0..nums2.len() - 1).rev() {
-            let mut next_greater = if nums2[i + 1] > nums2[i] {
-                nums2[i + 1]
-            } else {
-                let mut m = greater_map[&nums2[i + 1]];
-                loop {
-                    if m == -1 || m > nums2[i] {
-                        break m;
-                    }
-                    m = greater_map[&m]
+            let mut n = nums2[i + 1];
+            if nums2[i] > n {
+                while n != -1 && n < nums2[i] {
+                    n = greater[&n];
                 }
-            };
-            greater_map.insert(&nums2[i], next_greater);
+            }
+            greater.insert(&nums2[i], n);
         }
-        nums1.iter().map(|n| greater_map[n]).collect()
+        nums1.iter().map(|n| greater[n]).collect()
     }
 }
 // @lc code=end
