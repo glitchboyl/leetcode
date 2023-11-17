@@ -16,7 +16,7 @@ impl Solution {
             if s < start {
                 start = s;
             }
-            if end < sorted_intervals[i][0] {
+            if end < s {
                 intervals.push(vec![start, end]);
                 start = s;
             }
