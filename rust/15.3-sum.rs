@@ -8,7 +8,7 @@
 impl Solution {
     pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
         let mut ordered_nums = nums;
-        ordered_nums.sort();
+        ordered_nums.sort_unstable();
         let len = ordered_nums.len();
         let mut result = Vec::new();
         for i in 0..len - 2 {

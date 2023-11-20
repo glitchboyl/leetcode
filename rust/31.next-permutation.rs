@@ -24,7 +24,7 @@ impl Solution {
                 break;
             }
             if k == 0 {
-                nums.sort();
+                nums.sort_unstable();
                 return;
             }
         }

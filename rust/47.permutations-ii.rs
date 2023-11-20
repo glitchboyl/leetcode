@@ -10,7 +10,7 @@ impl Solution {
         let mut permutations = Vec::new();
         let mut used = vec![false; nums.len()];
         let mut nums = nums;
-        nums.sort();
+        nums.sort_unstable();
         fn backtrack(
             nums: &Vec<i32>,
             used: &mut Vec<bool>,

@@ -10,7 +10,7 @@ impl Solution {
         for i in 0..n {
             nums1[(m + i) as usize] = nums2[i as usize];
         }
-        nums1.sort();
+        nums1.sort_unstable();
 
         // let (mut i, mut j, mut k, mut d): (usize, usize, usize, usize) = (0, 0, 0, 0);
         // while (j as i32) < m && (k as i32) < n {

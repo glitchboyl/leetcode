@@ -9,7 +9,7 @@ impl Solution {
     pub fn combination_sum2(candidates: Vec<i32>, target: i32) -> Vec<Vec<i32>> {
         let mut combinations = vec![];
         let mut candidates = candidates;
-        candidates.sort();
+        candidates.sort_unstable();
         fn backtrack(
             candidates: &Vec<i32>,
             target: i32,

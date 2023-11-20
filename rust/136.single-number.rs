@@ -9,7 +9,7 @@ impl Solution {
     pub fn single_number(nums: Vec<i32>) -> i32 {
         // Solution 1:
         // let mut sorted_nums = nums.clone();
-        // sorted_nums.sort();
+        // sorted_nums.sort_unstable();
         // let mut i: usize = 0;
         // while i < (sorted_nums.len() - 1) {
         //     let j: usize = i + 1;

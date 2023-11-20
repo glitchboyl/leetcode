@@ -9,7 +9,7 @@ impl Solution {
     pub fn contains_duplicate(nums: Vec<i32>) -> bool {
         // Solution 1: sort then compare
         // let mut sorted_nums = nums.to_vec();
-        // sorted_nums.sort();
+        // sorted_nums.sort_unstable();
         // for i in 0..(sorted_nums.len() - 1) {
         //     if sorted_nums[i] == sorted_nums[i + 1] {
         //         return true;

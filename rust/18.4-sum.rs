@@ -10,7 +10,7 @@ impl Solution {
         let mut quadruplets = vec![];
         if nums.len() >= 4 {
             let mut ordered_nums = nums;
-            ordered_nums.sort();
+            ordered_nums.sort_unstable();
             let len = ordered_nums.len();
             for a in 0..len - 3 {
                 if a > 0 && ordered_nums[a] == ordered_nums[a - 1] {

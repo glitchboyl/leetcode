@@ -12,7 +12,7 @@ impl Solution {
 
         for word in strs {
             let mut key: Vec<_> = word.chars().collect();
-            key.sort();
+            key.sort_unstable();
             anagrams.entry(key).or_insert(vec![]).push(word);
         }
 

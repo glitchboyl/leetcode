@@ -8,7 +8,7 @@
 impl Solution {
     pub fn three_sum_closest(nums: Vec<i32>, target: i32) -> i32 {
         let mut ordered_nums = nums;
-        ordered_nums.sort();
+        ordered_nums.sort_unstable();
         let mut d = i32::MAX;
         let len = ordered_nums.len();
         for i in 0..len - 2 {
