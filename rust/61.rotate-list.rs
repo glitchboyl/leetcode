@@ -23,7 +23,7 @@
 // }
 impl Solution {
     pub fn rotate_right(head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
-        if k == 0 {
+        if k == 0 || head.is_none() {
             return head;
         }
         let mut count = 0;
@@ -33,9 +33,6 @@ impl Solution {
                 p = &node.next;
                 count += 1;
             }
-        }
-        if count == 0 {
-            return head;
         }
         let k = k % count;
         if k == 0 {
