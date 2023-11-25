@@ -20,7 +20,7 @@ impl Solution {
         let mut dp: Vec<i32> = (0..n as i32 + 1).collect();
         for (i, b1) in word1.bytes().enumerate() {
             let mut d = dp[0];
-            dp[0] = 1 + i as i32;
+            dp[0] += 1;
             for (j, b2) in word2.bytes().enumerate() {
                 let p = dp[1 + j];
                 dp[1 + j] = if b1 == b2 { d } else { 1 + dp[j].min(p).min(d) };
