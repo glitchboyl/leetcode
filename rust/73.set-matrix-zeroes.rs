@@ -19,14 +19,13 @@ impl Solution {
             }
         }
         for i in (0..matrix.len()).rev() {
-            let entire_row_zero = matrix[i][0] == 0;
-            if entire_first_column_zero || (i == 0 && entire_first_row_zero) {
-                matrix[i][0] = 0;
-            }
             for j in 1..matrix[0].len() {
-                if entire_row_zero || matrix[0][j] == 0 || (i == 0 && entire_first_row_zero) {
+                if matrix[i][0] == 0 || matrix[0][j] == 0 || (i == 0 && entire_first_row_zero) {
                     matrix[i][j] = 0;
                 }
+            }
+            if entire_first_column_zero || (i == 0 && entire_first_row_zero) {
+                matrix[i][0] = 0;
             }
         }
     }
