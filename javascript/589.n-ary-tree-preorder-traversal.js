@@ -22,10 +22,10 @@ var preorder = function (root) {
   if (root) {
     const stack = [root];
     while (stack.length) {
-      const current = stack.pop();
-      nodes.push(current.val);
-      for (let i = current.children.length - 1; i >= 0; i--) {
-        stack.push(current.children[i]);
+      const currentNode = stack.pop();
+      nodes.push(currentNode.val);
+      for (let i = currentNode.children.length - 1; i >= 0; i--) {
+        stack.push(currentNode.children[i]);
       }
     }
   }
