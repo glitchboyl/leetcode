@@ -7,6 +7,9 @@
 // @lc code=start
 impl Solution {
     pub fn remove_duplicates(nums: &mut Vec<i32>) -> i32 {
+        if nums.len() <= 2 {
+            return nums.len() as i32;
+        }
         let mut current = nums[0];
         let mut count = 1;
         let mut s = 1;
