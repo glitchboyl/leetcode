@@ -28,27 +28,20 @@ use std::rc::Rc;
 impl Solution {
     pub fn tree2str(root: Option<Rc<RefCell<TreeNode>>>) -> String {
         let mut str = String::new();
-        fn dfs(node: &Option<Rc<RefCell<TreeNode>>>, str: &mut String) {
-            if let Some(n) = node {
-                let nb = n.borrow();
-                str.push_str(&nb.val.to_string());
-                if nb.left.is_some() {
-                    str.push('(');
-                    dfs(&nb.left, str);
-                    str.push(')');
-                }
+        if let Some(node) = root {
+            let mut nb = node.borrow_mut();
+            str.push_str(&nb.val.to_string());
+            if nb.left.is_some() || nb.right.is_some() {
+                str.push('(');
+                str.push_str(&Self::tree2str(nb.left.take()));
+                str.push(')');
                 if nb.right.is_some() {
-                    if nb.left.is_none() {
-                        str.push('(');
-                        str.push(')');
-                    }
                     str.push('(');
-                    dfs(&nb.right, str);
+                    str.push_str(&Self::tree2str(nb.right.take()));
                     str.push(')');
                 }
             }
         }
-        dfs(&root, &mut str);
         str
     }
 }
