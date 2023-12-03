@@ -25,22 +25,14 @@ impl Solution {
             if mid == left {
                 break;
             }
-            if nums[left] < nums[mid] {
-                if target > nums[left] && target < nums[mid] {
-                    left += 1;
-                    right = mid - 1;
-                } else {
-                    right -= 1;
-                    left = mid + 1;
-                }
+            if (nums[left] < nums[mid] && target > nums[left] && target < nums[mid])
+                || (nums[left] > nums[mid] && (target < nums[mid] || target > nums[right]))
+            {
+                left += 1;
+                right = mid - 1;
             } else {
-                if target > nums[mid] && target < nums[right] {
-                    right -= 1;
-                    left = mid + 1;
-                } else {
-                    left += 1;
-                    right = mid - 1;
-                }
+                right -= 1;
+                left = mid + 1;
             }
         }
         false
